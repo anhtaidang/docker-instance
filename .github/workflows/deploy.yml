@@ -26,9 +26,7 @@ jobs:
         echo "Branch/Tag: $GITHUB_REF"
         echo "Commit SHA: $GITHUB_SHA"
         echo "CHECK ${{ vars.DOCKER_IMPLEMENT_PATH }}"
-        echo "CHECK ${{ vars.DOCKER_PATH }}"
-        
-        
+    
     - name: RUN SUDO APT
       run: |
         docker --version
@@ -38,11 +36,13 @@ jobs:
       run: |
         scp -o StrictHostKeyChecking=no docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:${{ env.DOCKER_IMPLEMENT_PATH }}
         scp -o StrictHostKeyChecking=no .env ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:${{ env.DOCKER_IMPLEMENT_PATH }}
-    # Bước 4: Kết nối SSH để chạy docker-compose
+
+    # Connect SSH & RUN docker-compose
     - name: Deploy application with Docker Compose
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
-        cd workspace/docker-implement
+        echo "CD to ${{ vars.DOCKER_PATH }}"
+        cd ${{ vars.DOCKER_PATH }}
         ls -a
         # docker-compose up -d --build
         EOF
