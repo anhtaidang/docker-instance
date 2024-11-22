@@ -36,4 +36,11 @@ jobs:
       run: |
         scp -o StrictHostKeyChecking=no docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:${{ env.DOCKER_IMPLEMENT_PATH }}
         scp -o StrictHostKeyChecking=no .env ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:${{ env.DOCKER_IMPLEMENT_PATH }}
-        docker-compose up -d
+    # Bước 4: Kết nối SSH để chạy docker-compose
+    - name: Deploy application with Docker Compose
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+        cd ${{ env.DOCKER_IMPLEMENT_PATH }}
+        docker-compose pull
+        docker-compose up -d --build
+        EOF
