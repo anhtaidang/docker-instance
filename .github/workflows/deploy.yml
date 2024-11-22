@@ -25,9 +25,6 @@ jobs:
         docker --version
 
     # Copy docker-compose.yml lên VPS
-    # - name: Copy docker-compose.yml to VPS
-    #   uses: webfactory/ssh-agent@v0.5.3
-    #   with:
-    #     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-    #   run: |
-    #     scp docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:/home/anhtaidang/workspace/docker-implement
+    - name: Copy docker-compose.yml to VPS
+      run: |
+        scp docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:/home/anhtaidang/workspace/docker-implement
