@@ -44,5 +44,5 @@ jobs:
         echo "CD to ${{ vars.DOCKER_PATH }}"
         cd ${{ vars.DOCKER_PATH }}
         ls -a
-        # docker-compose up -d --build
+        docker-compose up -d --build
         EOF
