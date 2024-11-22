@@ -20,7 +20,7 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    # Copy docker-compose.yml lên VPS
-    - name: Copy docker-compose.yml to VPS
-      run: |
-        scp docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:/home/anhtaidang/workspace/docker-implement
+    # # Copy docker-compose.yml lên VPS
+    # - name: Copy docker-compose.yml to VPS
+    #   run: |
+    #     scp docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:/home/anhtaidang/workspace/docker-implement
