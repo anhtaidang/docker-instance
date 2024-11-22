@@ -19,6 +19,9 @@ jobs:
       uses: webfactory/ssh-agent@v0.5.3
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    - name: RUN SUDO APT
+      run: |
+        sudo ufw status
 
     # # Copy docker-compose.yml lên VPS
     # - name: Copy docker-compose.yml to VPS
