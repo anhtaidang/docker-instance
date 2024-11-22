@@ -1,0 +1,26 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Thiết lập SSH
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    # Copy docker-compose.yml lên VPS
+    - name: Copy docker-compose.yml to VPS
+      run: |
+        scp docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:/home/anhtaidang/workspace/docker-implement
