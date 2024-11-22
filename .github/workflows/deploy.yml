@@ -26,6 +26,8 @@ jobs:
         echo "Branch/Tag: $GITHUB_REF"
         echo "Commit SHA: $GITHUB_SHA"
         echo "CHECK ${{ vars.DOCKER_IMPLEMENT_PATH }}"
+        echo "CHECK ${{ vars.DOCKER_PATH }}"
+        
         
     - name: RUN SUDO APT
       run: |
@@ -41,6 +43,6 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
         ls -l
-        # cd ${{ env.DOCKER_IMPLEMENT_PATH }}
+        # cd ${{ env.DOCKER_PATH }}
         # docker-compose up -d --build
         EOF
