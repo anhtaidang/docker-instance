@@ -28,4 +28,5 @@ jobs:
     - name: Copy docker-compose.yml to VPS
       run: |
         scp -o StrictHostKeyChecking=no docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:/home/anhtaidang/workspace/docker-implement
+        scp -o StrictHostKeyChecking=no .env ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:/home/anhtaidang/workspace/docker-implement
         docker-compose up -d
