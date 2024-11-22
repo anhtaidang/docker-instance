@@ -42,7 +42,8 @@ jobs:
     - name: Deploy application with Docker Compose
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
+        
+        cd ${{ env.DOCKER_PATH }}
         ls -l
-        # cd ${{ env.DOCKER_PATH }}
-        # docker-compose up -d --build
+        docker-compose up -d --build
         EOF
