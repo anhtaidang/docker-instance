@@ -22,6 +22,7 @@ jobs:
     - name: RUN SUDO APT
       run: |
         sudo ufw status
+        sudo apt update
 
     # # Copy docker-compose.yml lên VPS
     # - name: Copy docker-compose.yml to VPS
