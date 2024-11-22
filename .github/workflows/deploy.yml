@@ -39,7 +39,7 @@ jobs:
     # Bước 4: Kết nối SSH để chạy docker-compose
     - name: Deploy application with Docker Compose
       run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
         cd ${{ env.DOCKER_IMPLEMENT_PATH }}
         docker-compose pull
         docker-compose up -d --build
