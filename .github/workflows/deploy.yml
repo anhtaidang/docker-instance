@@ -44,5 +44,5 @@ jobs:
         ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
         cd ${{ vars.DOCKER_PATH }}
         ls -a
-        docker-compose up -d --build
+        # docker-compose up -d --build
         EOF
