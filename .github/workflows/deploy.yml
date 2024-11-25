@@ -41,6 +41,14 @@ jobs:
     - name: Deploy application with Docker Compose
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
+
+        if [ -d ${{ env.DOCKER_IMPLEMENT_PATH }} ]; then
+          echo 'Folder exists';
+        else
+          echo 'Folder does not exist';
+          exit 1;
+        fi
+
         echo "CD to ${{ vars.DOCKER_PATH }}"
         cd ${{ vars.DOCKER_PATH }}
         ls -a
