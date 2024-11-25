@@ -47,7 +47,7 @@ jobs:
           mkdir -p ${{ vars.DOCKER_PATH }};
         fi
 
-        sudo chmod u+w ${{ vars.DOCKER_PATH }} -R
+        chmod u+w ${{ vars.DOCKER_PATH }} -R
 
         EOF
         
