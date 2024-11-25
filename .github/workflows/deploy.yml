@@ -44,7 +44,7 @@ jobs:
           echo 'Folder does not exist';
           # exit 1;
           echo '[RUN]: mkdir ${{ vars.DOCKER_PATH }}';
-          mkdir ${{ vars.DOCKER_PATH }};
+          sudo mkdir -p ${{ vars.DOCKER_PATH }};
         fi
 
         EOF
