@@ -38,14 +38,16 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
         
-        if [ -d ${{ vars.DOCKER_IMPLEMENT_PATH }} ]; then
-          echo 'Folder exists ${{ vars.DOCKER_IMPLEMENT_PATH }}';
+        if [ -d ${{ vars.DOCKER_PATH }} ]; then
+          echo 'Folder exists ${{ vars.DOCKER_PATH }}';
         else
           echo 'Folder does not exist';
           # exit 1;
           echo '[RUN]: mkdir ${{ vars.DOCKER_PATH }}';
           sudo mkdir -p ${{ vars.DOCKER_PATH }};
         fi
+
+        sudo chmod u+w ${{ vars.DOCKER_PATH }} -R
 
         EOF
         
