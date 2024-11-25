@@ -34,14 +34,8 @@ jobs:
     # Copy docker-compose.yml to VPS
     - name: Copy docker-compose.yml to VPS
       run: |
-        scp -o StrictHostKeyChecking=no docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:${{ env.DOCKER_IMPLEMENT_PATH }}
-        scp -o StrictHostKeyChecking=no .env ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:${{ env.DOCKER_IMPLEMENT_PATH }}
-
-    # Connect SSH & RUN docker-compose
-    - name: Connect SSH & RUN docker-compose
-      run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
-
+        
         if [ -d ${{ env.DOCKER_IMPLEMENT_PATH }} ]; then
           echo 'Folder exists ${{ env.DOCKER_IMPLEMENT_PATH }}';
         else
@@ -50,6 +44,16 @@ jobs:
           echo '[RUN]: mkdir ${{ env.DOCKER_IMPLEMENT_PATH }}';
           mkdir ${{ env.DOCKER_IMPLEMENT_PATH }};
         fi
+        
+        EOF
+        
+        scp -o StrictHostKeyChecking=no docker-compose.yml ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:${{ env.DOCKER_IMPLEMENT_PATH }}
+        scp -o StrictHostKeyChecking=no .env ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:${{ env.DOCKER_IMPLEMENT_PATH }}
+
+    # Connect SSH & RUN docker-compose
+    - name: Connect SSH & RUN docker-compose
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
 
         echo "Acccess to ${{ vars.DOCKER_PATH }}"
         cd ${{ vars.DOCKER_PATH }}
