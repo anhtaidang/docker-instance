@@ -45,9 +45,8 @@ jobs:
           # exit 1;
           echo '[RUN]: mkdir ${{ vars.DOCKER_PATH }}';
           mkdir -p ${{ vars.DOCKER_PATH }};
+          chmod u+w ${{ vars.DOCKER_PATH }} -R
         fi
-
-        chmod u+w ${{ vars.DOCKER_PATH }} -R
 
         EOF
         
